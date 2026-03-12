@@ -8,22 +8,7 @@
 
 В классической литературе по ООП обычно выделяют три принципа (инкапсуляция, наследование, полиморфизм). Ниже   соответствие между этими принципами и механизмами их реализации в Java.
 
-```mermaid
-flowchart LR
-    subgraph principles [Принципы ООП]
-        E[Инкапсуляция]
-        I[Наследование]
-        P[Полиморфизм]
-    end
-    subgraph mechanisms [Механизмы в Java]
-        E1["private fields + access via methods"]
-        I1["extends, subclasses"]
-        P1["dynamic dispatch "Overload", override"]
-    end
-    E --> E1
-    I --> I1
-    P --> P1
-```
+
 
 ### 1.1 Инкапсуляция
 
