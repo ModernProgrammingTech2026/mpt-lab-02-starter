@@ -1,6 +1,6 @@
 # Объектно‑ориентированное проектирование в Java: классы, интерфейсы и другие конструкции
 
-В этом документе кратко изложены основные понятия объектно‑ориентированного программирования (ООП), используемые в курсе, и показано, как конструкции Java (класс, абстрактный класс, интерфейс, sealed‑класс, record, enum и др.) применяются в реальных системах — например, в **платёжной системе** или в **системе уведомлений**. Терминология и определения согласованы с общепринятой учебной и технической литературой по ООП и Java.
+В этом документе кратко изложены основные понятия объектно‑ориентированного программирования (ООП), используемые в курсе, и показано, как конструкции Java (класс, абстрактный класс, интерфейс, sealed‑класс, record, enum и др.) применяются в реальных системах — например, в **платёжной системе** или в **системе уведомлений**.
 
 ---
 
@@ -18,7 +18,7 @@ flowchart LR
     subgraph mechanisms [Механизмы в Java]
         E1["private fields + access via methods"]
         I1["extends, subclasses"]
-        P1["dynamic dispatch, override"]
+        P1["dynamic dispatch "Overload", override"]
     end
     E --> E1
     I --> I1
@@ -233,11 +233,6 @@ public class SmartDevice {
 public abstract class Employee {
     protected String name;
     protected double baseSalary;
-
-    public Employee(String name, double baseSalary) {
-        this.name = name;
-        this.baseSalary = baseSalary;
-    }
 
     public abstract double calculateBonus();
 
