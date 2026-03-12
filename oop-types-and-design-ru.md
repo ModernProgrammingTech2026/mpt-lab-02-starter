@@ -18,7 +18,7 @@ flowchart LR
     subgraph mechanisms [Механизмы в Java]
         E1["private fields + access via methods"]
         I1["extends, subclasses"]
-        P1["dynamic dispatch "Overload", override"]
+        P1["dynamic dispatch overload, override"]
     end
     E --> E1
     I --> I1
