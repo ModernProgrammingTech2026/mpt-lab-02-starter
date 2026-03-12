@@ -50,7 +50,7 @@ Starter repository for **Практика 2** of the Modern Programming Technolo
 Из корня проекта (папка, где лежит `src/`):
 
 ```bash
-javac src/fa/com/lab2/*.java src/fa/com/lab2/company/core/*.java src/fa/com/lab2/company/app/*.java
+javac src/fa/com/lab2/*.java src/company/core/*.java src/company/app/*.java
 java -cp src fa.com.lab2.Main
 ```
 
@@ -60,7 +60,7 @@ java -cp src fa.com.lab2.Main
 
 ## Структура и задания
 
-All required code and answer templates are in package `fa.com.lab2`. Some tasks use subpackages `fa.com.lab2.company.core` and `fa.com.lab2.company.app`.
+All required code and answer templates are in package `fa.com.lab2`. Задание 1.2 дополнительно использует пакеты `company.core` и `company.app`, как в тексте практики.
 
 ### Part 1: Classes and access modifiers
 
