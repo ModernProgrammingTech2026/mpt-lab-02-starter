@@ -16,9 +16,9 @@ flowchart LR
         P[Полиморфизм]
     end
     subgraph mechanisms [Механизмы в Java]
-        E1["private-поля + доступ через методы"]
-        I1["extends, подклассы"]
-        P1["динамическое связывание, override"]
+        E1["private fields + access via methods"]
+        I1["extends, subclasses"]
+        P1["dynamic dispatch, override"]
     end
     E --> E1
     I --> I1
@@ -68,12 +68,12 @@ public class BankAccount {
 
 ```mermaid
 flowchart LR
-    Client["Внешний код\n(клиент класса)"]
+    Client["External code\n(client)"]
     GetBalance["+ getBalance()"]
     SetBalance["+ setBalance(double)"]
     Balance[("balance\nprivate")]
-    Client -->|"чтение"| GetBalance
-    Client -->|"запись"| SetBalance
+    Client -->|"read"| GetBalance
+    Client -->|"write"| SetBalance
     GetBalance --> Balance
     SetBalance --> Balance
 ```
@@ -144,11 +144,11 @@ a2.makeSound(); // Meow!
 
 ```mermaid
 flowchart LR
-    subgraph refs [Ссылочные переменные]
+    subgraph refs [Reference variables]
         A1["Animal a1"]
         A2["Animal a2"]
     end
-    subgraph heap [Объекты в куче]
+    subgraph heap [Objects on heap]
         D["Dog"]
         C["Cat"]
     end
@@ -179,13 +179,13 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    Need([Нужна конструкция типа])
-    Need -->|"иерархия с общим состоянием"| Abstract[Абстрактный класс]
-    Need -->|"контракт без состояния"| Interface[Интерфейс]
-    Need -->|"неизменяемые данные"| Record[Record]
-    Need -->|"фиксированный набор констант"| Enum[Enum]
-    Abstract -->|"подтипы известны и конечны"| Sealed[Sealed-класс]
-    Interface -->|"реализации ограничены"| SealedIf[Sealed-интерфейс]
+    Need([Need a type construct])
+    Need -->|"hierarchy with shared state"| Abstract[Abstract class]
+    Need -->|"contract without state"| Interface[Interface]
+    Need -->|"immutable data"| Record[Record]
+    Need -->|"fixed set of constants"| Enum[Enum]
+    Abstract -->|"subtypes known and finite"| Sealed[Sealed class]
+    Interface -->|"implementations restricted"| SealedIf[Sealed interface]
 ```
 
 Ниже даны краткие пояснения и примеры.
@@ -625,22 +625,22 @@ public void notifyUser(Notifier notifier, String user, String text) {
 
 ```mermaid
 flowchart TD
-    Start([Нужен новый тип])
-    Q1{Иерархия с общим состоянием?}
-    Q2{Множество подтипов фиксировано?}
-    Q3{Только контракт поведения?}
-    Q4{Неизменяемые данные?}
-    Q5{Фиксированный набор вариантов?}
+    Start([Need a new type])
+    Q1{Hierarchy with shared state?}
+    Q2{Fixed set of subtypes?}
+    Q3{Contract of behavior only?}
+    Q4{Immutable data?}
+    Q5{Fixed set of options?}
     Start --> Q1
     Start --> Q4
     Start --> Q5
-    Q1 -->|Да| Q2
-    Q1 -->|Нет| Q3
-    Q2 -->|Да| Sealed[Sealed-класс]
-    Q2 -->|Нет| Abstract[Абстрактный класс]
-    Q3 -->|Да / несколько ролей| Interface[Интерфейс]
-    Q4 -->|Да| Record[Record]
-    Q5 -->|Да| Enum[Enum]
+    Q1 -->|Yes| Q2
+    Q1 -->|No| Q3
+    Q2 -->|Yes| Sealed[Sealed class]
+    Q2 -->|No| Abstract[Abstract class]
+    Q3 -->|Yes / multiple roles| Interface[Interface]
+    Q4 -->|Yes| Record[Record]
+    Q5 -->|Yes| Enum[Enum]
 ```
 
 При проектировании кода:
