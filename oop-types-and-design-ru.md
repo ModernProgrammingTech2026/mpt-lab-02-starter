@@ -26,12 +26,14 @@ flowchart LR
 ```
 
 
+
+
 ### 1.1 Инкапсуляция
 
 **Инкапсуляция**   объединение данных и операций над ними в одной единице (классе) и контроль доступа к внутреннему состоянию. На практике это достигается **сокрытием информации** (information hiding): внутренние данные объявляют `private`, доступ   только через методы.
 
 - Поля обычно объявляют с модификатором `private`.
-- Доступ к данным обеспечивается через методы: геттеры и сеттеры (например, `getBalance()`, `setBalance()`).
+- Доступ к данным обеспечивается через методы: геттеры и сеттеры (например, `getOwner()`, `setOwner()`), а для денежного баланса — через предметные методы (`deposit()`, `withdraw()`), а не прямой `setBalance(...)`.
 - Модификаторы доступа (`private`, доступ в пределах пакета (package-private), `protected`, `public`) задают, **кто может видеть** и **кто может изменять** внутреннее состояние объекта.
 
 Пример (упрощённый банковский счёт):
@@ -46,38 +48,39 @@ public class BankAccount {
         this.balance = initialBalance;
     }
 
-    public double getBalance() {
-        return balance;
+    public String getOwner() {
+        return owner;
     }
 
-    public void setBalance(double balance) {
-        if (balance < 0) {
-            System.out.println("Ошибка: баланс не может быть отрицательным");
+    public void setOwner(String owner) {
+        if (owner == null || owner.isBlank()) {
+            System.out.println("Ошибка: владелец не может быть пустым");
             return;
         }
-        this.balance = balance;
+        this.owner = owner;
     }
 }
 ```
 
 Важно:
 
-- К полю `balance` нельзя обратиться напрямую извне класса.
-- Чтение   через публичный геттер `getBalance()`, запись   через публичный сеттер `setBalance(...)`, в котором можно проверять данные (валидация).
+- К полям `owner` и `balance` нельзя обратиться напрямую извне класса.
+- Имя владельца читается и изменяется через публичные методы `getOwner()` и `setOwner(...)`. Баланс в реальной системе должен изменяться через предметные методы (`deposit()`, `withdraw()`), которые инкапсулируют бизнес-правила.
 
-*Схема доступа:* внешний код не обращается к полю `balance` напрямую; чтение и запись идут только через публичные методы.
+*Схема доступа (для поля `owner`):* внешний код не обращается к полю напрямую; чтение и запись идут только через публичные методы.
 
 ```mermaid
 flowchart LR
     Client["External code\n(client)"]
-    GetBalance["+ getBalance()"]
-    SetBalance["+ setBalance(double)"]
-    Balance[("balance\nprivate")]
-    Client -->|"read"| GetBalance
-    Client -->|"write"| SetBalance
-    GetBalance --> Balance
-    SetBalance --> Balance
+    GetOwner["+ getOwner()"]
+    SetOwner["+ setOwner(String)"]
+    Owner[("owner\nprivate")]
+    Client -->|"read"| GetOwner
+    Client -->|"write"| SetOwner
+    GetOwner --> Owner
+    SetOwner --> Owner
 ```
+
 
 ---
 
