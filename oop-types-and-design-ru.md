@@ -103,6 +103,13 @@ public class Dog extends Animal {
         System.out.println("Woof!");
     }
 }
+
+public class Cat extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Meao!");
+    }
+}
 ```
 
 - Класс `Dog` **является** разновидностью `Animal` (отношение «является»).
